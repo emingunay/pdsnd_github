@@ -17,18 +17,15 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     city=input("Which city's data would you like to see? Please choose from Chicago, New york city or Washington.\n").lower()
     while city not in['chicago','new york city','washington']:
         print('The input you specified is not valid')
         city=input("Which city's data would you like to see? Please choose from Chicago, New york city or Washington.\n").lower()
-    # TO DO: get user input for month (all, january, february, ... , june)
     month=input("Please specify month to filter data. Type 'all' for all months.\n").lower()
     while month not in['january','february','march','april','may','june','july','august','september','october','november','december','all']:
                        print('The input you specified is not valid')
                        month=input("Please specify month to filter data. Type 'all' for all months.\n").lower()
 
-    # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     day=input("Please specify day to filter data. Type 'all' for all days.\n").lower()
     while day not in ['monday','tuesday','wednesday','thursday','friday','saturday','sunday','all']:
         print('The input you specified is not valid')
@@ -90,17 +87,14 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # TO DO: display the most common month
     popular_month=calendar.month_name[df['month'].mode()[0]]
     print("Most common month:", popular_month)
 
-    # TO DO: display the most common day of week
     popular_day=df['day_of_week'].mode()[0]
     print("Most common day:", popular_day)
 
 
 
-    # TO DO: display the most common start hour
     popular_hour = df['hour'].mode()[0]
     print("Most common hour:", popular_hour)
 
@@ -115,17 +109,14 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # TO DO: display most commonly used start station
     popular_start_station=df['Start Station'].mode()[0]
     print("Most common start station:", popular_start_station)
 
 
-    # TO DO: display most commonly used end station
     popular_end_station=df['End Station'].mode()[0]
     print("Most common end station:", popular_end_station)    
 
 
-    # TO DO: display most frequent combination of start station and end station trip
     popular_station_combination=((df['Start Station'] + '-' + df['End Station']).mode()[0])
     print("Most frequent combination of start and end station:", popular_station_combination)
 
@@ -140,12 +131,10 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # TO DO: display total travel time
     total_travel_time=sum(df['Trip Duration'])/60
     print("Total Travel Time:", total_travel_time, "minutes")
 
 
-    # TO DO: display mean travel time
     mean_travel_time=df['Trip Duration'].mean()/60
     print("Mean Travel Time:", mean_travel_time, "minutes")
 
@@ -160,12 +149,10 @@ def user_stats(df,city):
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
-    # TO DO: Display counts of user types
     count_user_types = df['User Type'].value_counts()
     print("Counts of user types:", count_user_types)
 
 
-    # TO DO: Display counts of gender
     if city in['chicago','new york city']:
        gender_count=df['Gender'].value_counts()
        print("Counts of gender:\n", gender_count)
@@ -173,7 +160,6 @@ def user_stats(df,city):
        print("There is no gender data in the selected city.")
 
 
-    # TO DO: Display earliest, most recent, and most common year of birth
     if city in['chicago','new york city']:
        oldest_user=int(df['Birth Year'].min())
        youngest_user=int(df['Birth Year'].max())
